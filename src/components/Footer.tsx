@@ -218,10 +218,14 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800 flex gap-3 text-[11px] text-slate-500">
+            <div className="mt-4 pt-3 border-t border-slate-800 flex gap-3 text-[11px] text-slate-500 items-center flex-wrap">
               <Link href="/about" className="hover:text-slate-300">About Us</Link>
               <span>•</span>
               <Link href="/terms" className="hover:text-slate-300">Terms & Policy</Link>
+              <span>•</span>
+              <Link href="/admin" className="hover:text-blue-400 text-slate-400 font-medium">
+                Admin Portal
+              </Link>
             </div>
           </div>
 

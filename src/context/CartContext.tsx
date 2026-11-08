@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { CartItem, Product, Order } from '@/types';
+import { saveOrderToSupabase } from '@/services/orderService';
 
 interface CartContextType {
   items: CartItem[];
@@ -170,12 +171,17 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   /**
-   * Saves confirmed order into history
+   * Saves confirmed order into history and Supabase database
    */
   const saveOrder = (newOrder: Order) => {
     setOrders((prev) => [newOrder, ...prev]);
     setLastCreatedOrder(newOrder);
     clearCart();
+
+    // Persist to Supabase database (async non-blocking)
+    saveOrderToSupabase(newOrder).catch((err) => {
+      console.warn('Background Supabase order sync error:', err);
+    });
   };
 
   return (

@@ -30,7 +30,7 @@ export interface Product {
   features: string[];
   image: string;
   images?: string[];
-  badge?: 'Bestseller' | 'New Launch' | 'Top Rated' | 'Hot Deal';
+  badge?: 'Bestseller' | 'New Launch' | 'Top Rated' | 'Hot Deal' | string;
   isFeatured?: boolean;
   isNewLaunch?: boolean;
 }

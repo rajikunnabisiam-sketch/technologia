@@ -19,6 +19,8 @@ import {
   Heart
 } from 'lucide-react';
 import { PRODUCTS } from '@/data/products';
+import { getProductById } from '@/services/productService';
+import { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
 import { RelianceStrip } from '@/components/RelianceStrip';
 import { ProductCard } from '@/components/ProductCard';
@@ -30,10 +32,18 @@ export default function ProductDetailPage() {
   const params = useParams();
   const idOrSlug = params?.id as string;
 
-  // Find product by id or slug
-  const product = PRODUCTS.find(
-    (p) => p.id === idOrSlug || p.slug === idOrSlug
-  );
+  // Find product by id or slug with live Supabase sync
+  const [product, setProduct] = useState<Product | null>(() => {
+    return PRODUCTS.find((p) => p.id === idOrSlug || p.slug === idOrSlug) || null;
+  });
+
+  React.useEffect(() => {
+    if (idOrSlug) {
+      getProductById(idOrSlug).then((p) => {
+        if (p) setProduct(p);
+      });
+    }
+  }, [idOrSlug]);
 
   const { addToCart, setIsCartOpen } = useCart();
   const [quantity, setQuantity] = useState(1);

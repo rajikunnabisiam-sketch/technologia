@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   ShieldCheck, 
@@ -11,12 +11,12 @@ import {
   Sparkles, 
   ArrowRight, 
   Truck, 
-  Star,
-  RotateCcw,
-  MessageCircle,
-  ExternalLink,
-  Cpu,
-  Layers
+  Star, 
+  RotateCcw, 
+  MessageCircle, 
+  ExternalLink, 
+  Cpu, 
+  Layers 
 } from 'lucide-react';
 import { VisionaryScreen } from '@/components/VisionaryScreen';
 import { CategoryIconGrid } from '@/components/CategoryIconGrid';
@@ -26,11 +26,23 @@ import { BrandsByShop } from '@/components/BrandsByShop';
 import { ProductCard } from '@/components/ProductCard';
 import { PRODUCTS } from '@/data/products';
 import { REVIEWS } from '@/data/reviews';
+import { getProducts } from '@/services/productService';
+import { Product } from '@/types';
 
 export default function HomePage() {
-  // Curated subsets for homepage sections
-  const flashDeals = PRODUCTS.filter((p) => p.badge === 'Hot Deal' || p.badge === 'Bestseller').slice(0, 4);
-  const newLaunches = PRODUCTS.filter((p) => p.isNewLaunch || p.badge === 'New Launch').slice(0, 4);
+  const [productsList, setProductsList] = useState<Product[]>(PRODUCTS);
+
+  useEffect(() => {
+    getProducts().then((data) => {
+      if (data && data.length > 0) {
+        setProductsList(data);
+      }
+    });
+  }, []);
+
+  // Curated subsets for homepage sections dynamically updated from Supabase
+  const flashDeals = productsList.filter((p) => p.badge === 'Hot Deal' || p.badge === 'Bestseller' || p.badge === 'Top Rated').slice(0, 4);
+  const newLaunches = productsList.filter((p) => p.isNewLaunch || p.badge === 'New Launch').slice(0, 4);
 
   return (
     <div className="relative min-h-screen bg-slate-50/30">
@@ -138,6 +150,7 @@ export default function HomePage() {
         subtitle="Up to 200W high-speed charging for laptops, smartphones & tablets."
         categoryFilter="power-banks"
         viewAllLink="/category/power-banks"
+        customProducts={productsList}
       />
 
       {/* Brands By Shop: Interactive Brand Scroller & Sort by Brand Repository */}
@@ -149,6 +162,7 @@ export default function HomePage() {
         subtitle="Hi-Res wireless audio, hybrid ANC, and precision wet/dry grooming devices."
         categoryFilter="headphones"
         viewAllLink="/category/headphones"
+        customProducts={productsList}
       />
 
         {/* Flash Deals & Top Rated Grid */}

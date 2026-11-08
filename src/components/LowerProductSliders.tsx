@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ArrowRight, Cpu } from 'lucide-react';
 import { PRODUCTS } from '@/data/products';
+import { Product } from '@/types';
 import { ProductCard } from './ProductCard';
 
 interface LowerProductSliderProps {
@@ -12,6 +13,7 @@ interface LowerProductSliderProps {
   categoryFilter?: string;
   featuredOnly?: boolean;
   viewAllLink: string;
+  customProducts?: Product[];
 }
 
 /**
@@ -25,11 +27,13 @@ export const LowerProductSlider: React.FC<LowerProductSliderProps> = ({
   categoryFilter,
   featuredOnly,
   viewAllLink,
+  customProducts,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Filter products according to category or featured flag
-  const products = PRODUCTS.filter((p) => {
+  const sourceList = customProducts && customProducts.length > 0 ? customProducts : PRODUCTS;
+  const products = sourceList.filter((p) => {
     if (categoryFilter && p.category !== categoryFilter) return false;
     if (featuredOnly && !p.isFeatured) return false;
     return true;

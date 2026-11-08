@@ -21,6 +21,7 @@ import {
 import { useCart } from '@/context/CartContext';
 import { Order } from '@/types';
 import { formatCurrency } from '@/utils/formatters';
+import { getOrderFromSupabase } from '@/services/orderService';
 
 const TIMELINE_STEPS = [
   { key: 'Order Placed', label: 'Order Received', desc: 'Order details verified' },
@@ -39,39 +40,61 @@ function TrackOrderContent() {
   const [query, setQuery] = useState(idFromUrl || 'ORD-84920');
   const [foundOrder, setFoundOrder] = useState<Order | null>(null);
   const [searched, setSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Auto-search if ID is passed in URL
   useEffect(() => {
-    if (idFromUrl) {
-      setQuery(idFromUrl);
-      const match = orders.find(
-        (o) => o.orderId.toLowerCase() === idFromUrl.toLowerCase()
-      );
-      if (match) {
-        setFoundOrder(match);
-      }
-      setSearched(true);
-    } else {
-      // Default initial demo order
-      const initial = orders.find((o) => o.orderId === 'ORD-84920') || orders[0];
-      if (initial) {
-        setFoundOrder(initial);
+    async function lookupInitial() {
+      if (idFromUrl) {
+        setQuery(idFromUrl);
+        setIsLoading(true);
+        const supabaseMatch = await getOrderFromSupabase(idFromUrl);
+        if (supabaseMatch) {
+          setFoundOrder(supabaseMatch);
+        } else {
+          const match = orders.find(
+            (o) => o.orderId.toLowerCase() === idFromUrl.toLowerCase()
+          );
+          setFoundOrder(match || null);
+        }
+        setIsLoading(false);
+        setSearched(true);
+      } else {
+        // Default initial demo order
+        const initial = orders.find((o) => o.orderId === 'ORD-84920') || orders[0];
+        if (initial) {
+          setFoundOrder(initial);
+        }
       }
     }
+    lookupInitial();
   }, [idFromUrl, orders]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
 
+    setIsLoading(true);
     const clean = query.trim().toLowerCase();
-    const match = orders.find(
+
+    // 1. Try fetching live from Supabase
+    const liveOrder = await getOrderFromSupabase(clean);
+    if (liveOrder) {
+      setFoundOrder(liveOrder);
+      setIsLoading(false);
+      setSearched(true);
+      return;
+    }
+
+    // 2. Fall back to local store
+    const localMatch = orders.find(
       (o) =>
         o.orderId.toLowerCase() === clean ||
         o.customer.phone.replace(/\D/g, '').includes(clean)
     );
 
-    setFoundOrder(match || null);
+    setFoundOrder(localMatch || null);
+    setIsLoading(false);
     setSearched(true);
   };
 
@@ -125,9 +148,14 @@ function TrackOrderContent() {
             <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 absolute left-3.5 pointer-events-none" />
             <button
               type="submit"
-              className="px-4 sm:px-6 py-3 sm:py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition flex items-center gap-1.5 flex-shrink-0"
+              disabled={isLoading}
+              className="px-4 sm:px-6 py-3 sm:py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-70 text-white font-bold text-xs sm:text-sm transition flex items-center gap-1.5 flex-shrink-0"
             >
-              <span>Track</span>
+              {isLoading ? (
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <span>Track</span>
+              )}
             </button>
           </div>
         </form>
