@@ -117,7 +117,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ onOrderSuccess }) 
   };
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-2.5 sm:p-4">
       {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm transition-opacity"
@@ -129,33 +129,33 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ onOrderSuccess }) 
       <div className="relative w-full max-w-2xl bg-white rounded-2xl border border-zinc-300 shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-200">
         
         {/* Precision Industrial Header */}
-        <div className="p-4 sm:p-5 border-b border-zinc-800 bg-zinc-950 text-white flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-blue-400">
-              <Truck className="w-5 h-5" />
+        <div className="p-3.5 sm:p-5 border-b border-zinc-800 bg-zinc-950 text-white flex items-center justify-between">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-blue-400">
+              <Truck className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 Secure Checkout • Official Dispatch
               </div>
-              <h3 className="font-bold text-white text-base sm:text-lg">
+              <h3 className="font-bold text-white text-sm sm:text-lg">
                 Complete Your Order
               </h3>
             </div>
           </div>
           <button
             onClick={() => setIsCheckoutOpen(false)}
-            className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition"
+            className="p-1.5 sm:p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="overflow-y-auto p-4 sm:p-6 space-y-5 flex-1">
+        <form onSubmit={handleSubmit} className="overflow-y-auto p-3.5 sm:p-6 space-y-4 sm:space-y-5 flex-1">
           
           {/* Order Summary Pill */}
-          <div className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center justify-between text-xs">
+          <div className="p-3 sm:p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col sm:flex-row gap-2 sm:items-center justify-between text-xs">
             <div>
               <span className="font-bold text-zinc-900 block">
                 {items.length} {items.length === 1 ? 'Item' : 'Items'} in Your Order
@@ -164,7 +164,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ onOrderSuccess }) 
                 Subtotal: {formatCurrency(subtotal)} | Courier Delivery: {shippingFee === 0 ? 'FREE' : formatCurrency(shippingFee)}
               </span>
             </div>
-            <div className="text-right">
+            <div className="text-left sm:text-right pt-1.5 sm:pt-0 border-t sm:border-t-0 border-zinc-200/80">
               <span className="text-[10px] uppercase font-bold text-zinc-500 block">Total Payable</span>
               <span className="text-base font-extrabold text-zinc-900">{formatCurrency(totalAmount)}</span>
             </div>

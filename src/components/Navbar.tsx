@@ -151,11 +151,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMenu }) => {
       </div>
 
       {/* Main Header Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 gap-3 sm:gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-20 gap-2 sm:gap-6">
           
           {/* Left: Corner Three-Bar (≡) Menu Button & Brand Logo */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             {/* Corner Three-Bar Button (FR-NAV-04) */}
             <button
               onClick={onOpenMenu}
@@ -171,8 +171,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMenu }) => {
             <BrandLogo variant="light" size="md" />
           </div>
 
-          {/* Center: Search Bar with EXACT placeholder (FR-NAV-02, ISS-NAV-01) */}
-          <div ref={searchContainerRef} className="relative flex-1 max-w-xl mx-2 sm:mx-4">
+          {/* Center: Search Bar on Tablet/Desktop (hidden on mobile, rendered below for 360px screens) */}
+          <div ref={searchContainerRef} className="hidden sm:block relative flex-1 max-w-xl mx-2 sm:mx-4">
             <div className="relative">
               <input
                 type="text"
@@ -199,7 +199,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMenu }) => {
               </div>
             </div>
 
-            {/* Instant Real-Time Search Results Dropdown */}
+            {/* Instant Real-Time Search Results Dropdown (Desktop) */}
             {isSearchOpen && searchQuery.trim().length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 max-h-[75vh] flex flex-col">
                 <div className="p-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500">
@@ -308,6 +308,103 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMenu }) => {
           </div>
 
         </div>
+
+        {/* Dedicated Mobile Search Bar (Optimized for 360px Viewports) */}
+        <div className="block sm:hidden pb-2.5 pt-0.5">
+          <div className="relative">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsSearchOpen(true);
+              }}
+              onFocus={() => setIsSearchOpen(true)}
+              placeholder="Looking for any product?"
+              className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-slate-100/90 focus:bg-white border border-slate-200 focus:border-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900/10 text-slate-900 transition-all placeholder:text-slate-400"
+            />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-slate-400 hover:text-slate-700 p-1 absolute right-2.5 top-1/2 -translate-y-1/2"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+
+            {/* Instant Real-Time Search Results Dropdown (Mobile) */}
+            {isSearchOpen && searchQuery.trim().length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-50 max-h-[65vh] flex flex-col">
+                <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                  <span>
+                    Results for &ldquo;<strong className="text-slate-800">{searchQuery}</strong>&rdquo; ({searchResults.length})
+                  </span>
+                  <button
+                    onClick={() => setIsSearchOpen(false)}
+                    className="hover:text-slate-800 font-bold"
+                  >
+                    Close
+                  </button>
+                </div>
+
+                <div className="overflow-y-auto divide-y divide-slate-100 p-1">
+                  {searchResults.length > 0 ? (
+                    searchResults.map((product) => (
+                      <div
+                        key={product.id}
+                        onClick={() => handleSelectProduct(product.id)}
+                        className="flex items-center gap-2.5 p-2.5 hover:bg-blue-50/60 rounded-lg cursor-pointer transition group"
+                      >
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="w-10 h-10 rounded-md object-cover bg-slate-100 border border-slate-200 flex-shrink-0"
+                          onError={(e) => {
+                            e.currentTarget.src = '/images/products/soundcore-r60i-main.jpg';
+                          }}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[9px] font-bold px-1 py-0.2 rounded bg-slate-100 text-slate-600">
+                              {product.brand}
+                            </span>
+                            <span className="text-[9px] text-blue-600 font-medium">
+                              {product.categoryLabel}
+                            </span>
+                          </div>
+                          <h4 className="text-xs font-semibold text-slate-800 truncate">
+                            {product.title}
+                          </h4>
+                          <span className="text-xs font-bold text-slate-900 block">
+                            {formatCurrency(product.price)}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-4 text-center">
+                      <p className="text-xs font-bold text-slate-800">
+                        No match for &ldquo;{searchQuery}&rdquo;
+                      </p>
+                      <a
+                        href={buildSearchFallbackWhatsAppUrl(searchQuery)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-[11px] font-bold"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Ask on WhatsApp</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
       </div>
     </header>
   );

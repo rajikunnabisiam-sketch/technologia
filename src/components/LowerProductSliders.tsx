@@ -107,7 +107,7 @@ export const LowerProductSlider: React.FC<LowerProductSliderProps> = ({
           {products.map((product) => (
             <div
               key={product.id}
-              className="w-[260px] sm:w-[280px] lg:w-[300px] flex-shrink-0 snap-start"
+              className="w-[220px] xs:w-[245px] sm:w-[280px] lg:w-[300px] flex-shrink-0 snap-start"
             >
               <ProductCard product={product} />
             </div>

@@ -119,13 +119,13 @@ function TrackOrderContent() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Enter Order ID (e.g., ORD-84920) or Phone..."
-              className="w-full px-4 py-3.5 pl-11 text-xs sm:text-sm text-slate-900 focus:outline-none"
+              placeholder="Order ID (e.g. ORD-84920) or Phone..."
+              className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-11 text-xs sm:text-sm text-slate-900 focus:outline-none"
             />
-            <Search className="w-5 h-5 text-slate-400 absolute left-3.5 pointer-events-none" />
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 absolute left-3.5 pointer-events-none" />
             <button
               type="submit"
-              className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition flex items-center gap-1.5 flex-shrink-0"
+              className="px-4 sm:px-6 py-3 sm:py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition flex items-center gap-1.5 flex-shrink-0"
             >
               <span>Track</span>
             </button>

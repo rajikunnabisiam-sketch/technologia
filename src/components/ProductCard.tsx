@@ -70,11 +70,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </Link>
 
       {/* Card Body */}
-      <div className="p-4 flex-1 flex flex-col justify-between">
+      <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
         <div>
           {/* Category & Verified Rating Line */}
           <div className="flex items-center justify-between text-xs mb-1.5">
-            <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wide">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 uppercase tracking-wide">
               {product.categoryLabel}
             </span>
             <div className="flex items-center gap-1 text-neutral-700 font-bold text-xs">
@@ -86,17 +86,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Product Title */}
           <Link href={`/product/${product.id}`} className="block group-hover:text-blue-600 transition-colors">
-            <h3 className="text-sm font-bold text-neutral-900 line-clamp-2 leading-snug">
+            <h3 className="text-xs sm:text-sm font-bold text-neutral-900 line-clamp-2 leading-snug">
               {product.title}
             </h3>
           </Link>
 
           {/* Precision Hardware Spec Badges */}
-          <div className="mt-2.5 flex flex-wrap gap-1">
+          <div className="mt-2 flex flex-wrap gap-1">
             {product.specs.slice(0, 2).map((spec, i) => (
               <span
                 key={i}
-                className="text-[11px] font-medium text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-md border border-neutral-200/60 truncate max-w-full"
+                className="text-[10px] sm:text-[11px] font-medium text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded-md border border-neutral-200/60 truncate max-w-full"
               >
                 {spec}
               </span>
@@ -105,40 +105,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Pricing & Reliance Strip */}
-        <div className="mt-4 pt-3 border-t border-neutral-100">
+        <div className="mt-3.5 pt-2.5 border-t border-neutral-100">
           
           {/* Price Block */}
           <div className="flex items-baseline justify-between mb-2">
             <div>
-              <span className="text-lg font-black text-neutral-950">
+              <span className="text-base sm:text-lg font-black text-neutral-950">
                 {formatCurrency(product.price)}
               </span>
               {product.originalPrice > product.price && (
-                <span className="text-xs text-neutral-400 line-through ml-2">
+                <span className="text-[11px] sm:text-xs text-neutral-400 line-through ml-1.5">
                   {formatCurrency(product.originalPrice)}
                 </span>
               )}
             </div>
-            <span className="text-[11px] text-emerald-700 font-bold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+            <span className="text-[10px] sm:text-[11px] text-emerald-700 font-bold flex items-center gap-1 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded-md border border-emerald-200/60">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               IN STOCK
             </span>
           </div>
 
           {/* Official Warranty Meta */}
-          <div className="text-xs text-neutral-500 font-medium flex items-center gap-1.5 mb-3">
+          <div className="text-[11px] sm:text-xs text-neutral-500 font-medium flex items-center gap-1.5 mb-2.5">
             <ShieldCheck className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
             <span className="truncate">{product.warranty}</span>
           </div>
 
           {/* Dual Action CTA Buttons (FR-PDP-03, US-4.1, US-4.2) */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
             
             {/* 1. Add to Cart Button with Tactile Physical Feel */}
             <button
               onClick={handleAddToCart}
               type="button"
-              className={`py-2 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-[0.98] ${
+              className={`py-2 px-1.5 sm:px-2.5 rounded-xl text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all shadow-xs active:scale-[0.98] ${
                 added 
                   ? 'bg-emerald-600 text-white' 
                   : 'bg-neutral-950 hover:bg-neutral-800 text-white border border-neutral-900'
@@ -162,7 +162,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               href={buildProductWhatsAppUrl(product)}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs shadow-emerald-600/20 active:scale-[0.98]"
+              className="py-2 px-1.5 sm:px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all shadow-xs shadow-emerald-600/20 active:scale-[0.98]"
               title="Order directly on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5" />

@@ -342,10 +342,10 @@ export default function ProductDetailPage() {
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden mb-12">
           
           {/* Tab Navigation */}
-          <div className="flex border-b border-slate-200 bg-slate-50 text-xs sm:text-sm font-bold">
+          <div className="flex border-b border-slate-200 bg-slate-50 text-xs sm:text-sm font-bold overflow-x-auto whitespace-nowrap scrollbar-hide">
             <button
               onClick={() => setSelectedTab('specs')}
-              className={`px-6 py-4 transition border-b-2 ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 transition border-b-2 shrink-0 ${
                 selectedTab === 'specs'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -355,7 +355,7 @@ export default function ProductDetailPage() {
             </button>
             <button
               onClick={() => setSelectedTab('features')}
-              className={`px-6 py-4 transition border-b-2 ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 transition border-b-2 shrink-0 ${
                 selectedTab === 'features'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -365,7 +365,7 @@ export default function ProductDetailPage() {
             </button>
             <button
               onClick={() => setSelectedTab('warranty')}
-              className={`px-6 py-4 transition border-b-2 ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 transition border-b-2 shrink-0 ${
                 selectedTab === 'warranty'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'
@@ -379,7 +379,7 @@ export default function ProductDetailPage() {
                 const el = document.getElementById('customer-reviews');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className={`px-6 py-4 transition border-b-2 flex items-center gap-1.5 ${
+              className={`px-4 sm:px-6 py-3 sm:py-4 transition border-b-2 shrink-0 flex items-center gap-1.5 ${
                 selectedTab === 'reviews'
                   ? 'border-blue-600 text-blue-600 bg-white'
                   : 'border-transparent text-slate-500 hover:text-slate-800'

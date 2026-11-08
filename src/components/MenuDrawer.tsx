@@ -138,7 +138,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
       />
 
       {/* Slide-out Drawer Panel */}
-      <div className="relative w-full max-w-[360px] sm:max-w-[400px] bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-left duration-300">
+      <div className="relative w-[85vw] max-w-[320px] sm:max-w-[380px] bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-left duration-300">
         
         {/* =========================================================================
             DRAWER HEADER

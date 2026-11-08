@@ -21,9 +21,9 @@ export const Footer: React.FC = () => {
     <footer className="bg-slate-950 text-slate-300 border-t border-slate-800">
       
       {/* 4 Trust Value Proposition Badges */}
-      <div className="border-b border-slate-800/80 bg-slate-900/60 py-6">
+      <div className="border-b border-slate-800/80 bg-slate-900/60 py-5 sm:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center flex-shrink-0 border border-blue-500/20">

@@ -39,7 +39,7 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({ order, onC
   )}`;
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center p-3 sm:p-4">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center p-2.5 sm:p-4">
       {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm transition-opacity"
@@ -51,44 +51,44 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({ order, onC
       <div className="relative w-full max-w-xl bg-white rounded-2xl border border-zinc-300 shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh] animate-in zoom-in-95 duration-200">
         
         {/* Precision Industrial Header */}
-        <div className="p-6 bg-zinc-950 text-white relative overflow-hidden border-b border-zinc-800">
+        <div className="p-4 sm:p-6 bg-zinc-950 text-white relative overflow-hidden border-b border-zinc-800">
           <div className="absolute top-2 right-3 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
             Official Order Confirmation
           </div>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <div className="flex items-center gap-2.5 sm:gap-3 mb-1.5 sm:mb-2">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-wider block">
+              <span className="text-[10px] sm:text-[11px] text-emerald-400 font-bold uppercase tracking-wider block">
                 Order Confirmed & Logged
               </span>
-              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">
+              <h3 className="text-base sm:text-xl font-bold tracking-tight text-white">
                 Dispatch Order Confirmed
               </h3>
             </div>
           </div>
-          <p className="text-xs text-zinc-400 mt-1 max-w-md">
+          <p className="text-[11px] sm:text-xs text-zinc-400 mt-1 max-w-md">
             Thank you, {order.customer.name}. Your order has been placed and assigned an official tracking ID.
           </p>
         </div>
 
         {/* Content Body */}
-        <div className="overflow-y-auto p-4 sm:p-6 space-y-4 flex-1 text-slate-800">
+        <div className="overflow-y-auto p-3.5 sm:p-6 space-y-3.5 sm:space-y-4 flex-1 text-slate-800">
           
           {/* Order ID Badge Box */}
-          <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+          <div className="p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center justify-between">
             <div>
               <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
                 Official Tracking ID
               </span>
-              <span className="text-lg sm:text-xl font-extrabold text-zinc-900 tracking-tight">
+              <span className="text-base sm:text-xl font-extrabold text-zinc-900 tracking-tight">
                 {order.orderId}
               </span>
             </div>
             <button
               onClick={handleCopyOrderId}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-zinc-200 hover:bg-zinc-100 text-zinc-700 text-xs font-semibold transition"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-white border border-zinc-200 hover:bg-zinc-100 text-zinc-700 text-xs font-semibold transition"
               title="Copy Order ID"
             >
               {copied ? (
@@ -106,7 +106,7 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({ order, onC
           </div>
 
           {/* Key Details Grid */}
-          <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
             <div className="p-3 rounded-xl bg-zinc-50 border border-zinc-200">
               <span className="text-zinc-400 block text-[10px] uppercase font-bold">Payment Mode:</span>
               <span className="font-bold text-zinc-900 mt-1 flex items-center gap-1.5">

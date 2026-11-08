@@ -318,7 +318,7 @@ export const BrandsByShop: React.FC = () => {
            ========================================================================= */}
         <div
           ref={scrollContainerRef}
-          className="flex items-center gap-3 sm:gap-4 overflow-x-auto pb-4 pt-1 no-scrollbar scroll-smooth select-none"
+          className="flex items-center gap-2.5 sm:gap-4 overflow-x-auto pb-4 pt-1 no-scrollbar scroll-smooth select-none"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {BRANDS_LIST.map((brand) => {
@@ -327,21 +327,21 @@ export const BrandsByShop: React.FC = () => {
               <button
                 key={brand.id}
                 onClick={() => setSelectedBrand(brand.id)}
-                className={`w-[110px] sm:w-[130px] p-3 sm:p-3.5 rounded-2xl bg-white border flex flex-col items-center justify-between shrink-0 transition-all duration-200 text-center group cursor-pointer ${
+                className={`w-[98px] sm:w-[130px] p-2.5 sm:p-3.5 rounded-2xl bg-white border flex flex-col items-center justify-between shrink-0 transition-all duration-200 text-center group cursor-pointer ${
                   isSelected
                     ? 'border-red-400 ring-2 ring-red-100 shadow-md bg-red-50/20'
                     : 'border-slate-200/90 hover:border-slate-300 hover:shadow-md'
                 }`}
               >
                 {/* Logo Box matching Image 2 */}
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center p-2 mb-2 transition-transform duration-200 group-hover:scale-105 ${
+                <div className={`w-14 h-14 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center p-1.5 sm:p-2 mb-1.5 sm:mb-2 transition-transform duration-200 group-hover:scale-105 ${
                   isSelected ? 'bg-white shadow-2xs' : 'bg-slate-50'
                 }`}>
                   {brand.renderLogo()}
                 </div>
 
                 {/* Brand Name Text below logo */}
-                <span className={`text-xs sm:text-sm font-bold tracking-tight truncate w-full transition-colors ${
+                <span className={`text-[11px] sm:text-sm font-bold tracking-tight truncate w-full transition-colors ${
                   isSelected ? 'text-red-600' : 'text-slate-800 group-hover:text-red-600'
                 }`}>
                   {brand.name}

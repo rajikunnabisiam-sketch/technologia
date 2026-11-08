@@ -19,13 +19,13 @@ export const WarrantyTrustBanner: React.FC = () => {
           
           {/* Left Column: Bold Typographic Trust Statement */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 text-xs font-semibold mb-3.5 shadow-2xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="tracking-wide text-[11px]">OFFICIAL DISTRIBUTOR & AUTHENTICITY ASSURANCE</span>
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 text-xs font-semibold mb-3 shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+              <span className="tracking-wide text-[10px] sm:text-[11px]">OFFICIAL DISTRIBUTOR & AUTHENTICITY ASSURANCE</span>
             </div>
 
             {/* Exact Locked Headline with Eye-Soothing Typography */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight leading-snug sm:leading-tight max-w-3xl text-balance text-slate-900">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight leading-snug sm:leading-tight max-w-3xl text-balance text-slate-900">
               &ldquo;100% Original Gadgets. Because the only thing worse than 1% battery is a fake power bank &mdash;{' '}
               <span className="text-blue-600">Real Tech, Official Warranty, Zero &lsquo;Trust Me Bro&rsquo; Guarantees.</span>&rdquo;
             </h2>

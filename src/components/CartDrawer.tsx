@@ -67,10 +67,10 @@ export const CartDrawer: React.FC = () => {
       />
 
       {/* Drawer Container */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
+      <div className="relative w-[88vw] max-w-[340px] sm:max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-in slide-in-from-right duration-300">
         
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div className="p-3.5 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
               <ShoppingCart className="w-5 h-5" />
@@ -228,7 +228,7 @@ export const CartDrawer: React.FC = () => {
 
         {/* Footer Summary & Dual Checkout Buttons */}
         {items.length > 0 && (
-          <div className="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 space-y-3">
+          <div className="p-3.5 sm:p-5 border-t border-slate-200 bg-slate-50 space-y-2.5 sm:space-y-3">
             
             {/* Price Calculations */}
             <div className="space-y-1.5 text-xs text-slate-600">

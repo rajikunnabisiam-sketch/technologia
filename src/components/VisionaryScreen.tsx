@@ -239,10 +239,10 @@ export const VisionaryScreen: React.FC = () => {
                       )
                     )}
 
-                    <div className="flex items-center gap-2 w-full sm:w-auto mt-1 sm:mt-0">
+                    <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto mt-1 sm:mt-0">
                       <Link
                         href={slide.productSlug ? `/product/${slide.productSlug}` : `/category/${slide.categorySlug}`}
-                        className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs shadow-md shadow-slate-900/15 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                        className="inline-flex items-center justify-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs shadow-md shadow-slate-900/15 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex-1 sm:flex-initial text-center"
                       >
                         <span>{slide.ctaText}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -260,7 +260,7 @@ export const VisionaryScreen: React.FC = () => {
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                        className="inline-flex items-center justify-center gap-1 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex-1 sm:flex-initial text-center"
                       >
                         <span>{slide.isCampaignSlide ? 'WhatsApp Desk' : 'WhatsApp Order'}</span>
                       </a>
@@ -276,7 +276,7 @@ export const VisionaryScreen: React.FC = () => {
                   <div className={`absolute w-56 h-56 sm:w-64 sm:h-64 rounded-full ${slide.glowColor || 'bg-blue-400/20'} blur-2xl animate-pulse-glow pointer-events-none`} />
 
                   {/* Primary Floating Image Canvas */}
-                  <div className="relative w-48 h-48 sm:w-60 sm:h-60 flex items-center justify-center">
+                  <div className="relative w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center">
                     <img
                       src={slide.imageUrl}
                       alt={slide.title}
@@ -288,7 +288,7 @@ export const VisionaryScreen: React.FC = () => {
 
                     {/* Secondary Angle Floating Preview Card */}
                     {slide.secondaryImageUrl && (
-                      <div className="absolute -bottom-2 -right-2 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/95 border border-slate-200/90 p-1.5 shadow-xl shadow-slate-300/40 flex items-center justify-center overflow-hidden animate-float-delayed group/thumb">
+                      <div className="absolute -bottom-2 -right-2 w-16 h-16 sm:w-24 sm:h-24 rounded-2xl bg-white/95 border border-slate-200/90 p-1.5 shadow-xl shadow-slate-300/40 flex items-center justify-center overflow-hidden animate-float-delayed group/thumb">
                         <img
                           src={slide.secondaryImageUrl}
                           alt="Product view"
@@ -306,14 +306,14 @@ export const VisionaryScreen: React.FC = () => {
 
                     {/* Floating Campaign Badge OR Factory Sealed badge */}
                     {slide.isCampaignSlide ? (
-                      <div className="absolute -top-3 -left-3 bg-slate-950 text-white border border-slate-800 px-3 py-1.5 rounded-xl shadow-md flex items-center gap-1.5 animate-float-delayed">
+                      <div className="absolute -top-3 -left-3 bg-slate-950 text-white border border-slate-800 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl shadow-md flex items-center gap-1.5 animate-float-delayed">
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                         <span className="text-[10px] font-bold tracking-wide text-amber-300">
                           MEGA SALE
                         </span>
                       </div>
                     ) : (
-                      <div className="absolute -top-2 -left-2 bg-white/95 border border-slate-200/90 px-2.5 py-1 rounded-xl text-[10px] font-bold text-emerald-700 flex items-center gap-1 shadow-md shadow-slate-200/60 animate-float-delayed">
+                      <div className="absolute -top-2 -left-2 bg-white/95 border border-slate-200/90 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-[10px] font-bold text-emerald-700 flex items-center gap-1 shadow-md shadow-slate-200/60 animate-float-delayed">
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                         <span>OFFICIAL SEALED</span>
                       </div>
@@ -346,13 +346,13 @@ export const VisionaryScreen: React.FC = () => {
 
               </div>
 
-              {/* Floating Edge Arrow Navigation Buttons */}
+              {/* Floating Edge Arrow Navigation Buttons (Desktop only to prevent text collision on 360px mobile touch screens) */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   prevSlide();
                 }}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center transition hover:scale-110 active:scale-95"
+                className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200/80 items-center justify-center transition hover:scale-110 active:scale-95"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -363,7 +363,7 @@ export const VisionaryScreen: React.FC = () => {
                   e.stopPropagation();
                   nextSlide();
                 }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200/80 flex items-center justify-center transition hover:scale-110 active:scale-95"
+                className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 hover:bg-white text-slate-800 shadow-md border border-slate-200/80 items-center justify-center transition hover:scale-110 active:scale-95"
                 aria-label="Next Slide"
               >
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />

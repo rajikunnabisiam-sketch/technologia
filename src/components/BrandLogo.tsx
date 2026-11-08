@@ -17,12 +17,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   const isDark = variant === 'dark';
 
   // Size configurations
-  const iconSize = size === 'lg' ? 'w-11 h-11' : size === 'sm' ? 'w-8 h-8' : 'w-9 h-9 sm:w-10 sm:h-10';
-  const svgSize = size === 'lg' ? 'w-6 h-6' : size === 'sm' ? 'w-4 h-4' : 'w-5 h-5';
-  const textSize = size === 'lg' ? 'text-2xl sm:text-3xl' : size === 'sm' ? 'text-lg' : 'text-xl sm:text-2xl';
+  const iconSize = size === 'lg' ? 'w-10 h-10 sm:w-11 sm:h-11' : size === 'sm' ? 'w-7 h-7 sm:w-8 sm:h-8' : 'w-8 h-8 sm:w-10 sm:h-10';
+  const svgSize = size === 'lg' ? 'w-5 h-5 sm:w-6 sm:h-6' : size === 'sm' ? 'w-3.5 h-3.5 sm:w-4 sm:h-4' : 'w-4 h-4 sm:w-5 sm:h-5';
+  const textSize = size === 'lg' ? 'text-xl sm:text-3xl' : size === 'sm' ? 'text-base sm:text-lg' : 'text-lg sm:text-2xl';
 
   return (
-    <Link href="/" className="inline-flex items-center gap-2.5 sm:gap-3 group select-none">
+    <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 group select-none">
       {/* 
         Bespoke Minimalist Tech Monogram Emblem
         Clean geometric geometry with dynamic electric blue accent node
@@ -72,10 +72,10 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           </span>
         </div>
 
-        {/* Clean, authentic subtitle */}
+        {/* Clean, authentic subtitle - hidden on small mobile to maximize horizontal headroom */}
         {showTagline && (
           <span
-            className={`text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase mt-1 leading-none ${
+            className={`text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase mt-1 leading-none hidden xs:block ${
               isDark ? 'text-slate-400' : 'text-slate-500'
             }`}
           >
