@@ -72,10 +72,10 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           </span>
         </div>
 
-        {/* Clean, authentic subtitle - hidden on small mobile to maximize horizontal headroom */}
+        {/* Clean, authentic subtitle - hidden on mobile to maximize horizontal headroom */}
         {showTagline && (
           <span
-            className={`text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase mt-1 leading-none hidden xs:block ${
+            className={`text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase mt-1 leading-none hidden sm:block ${
               isDark ? 'text-slate-400' : 'text-slate-500'
             }`}
           >
